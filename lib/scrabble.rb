@@ -1,15 +1,12 @@
+require('pry')
+
 class Word
   def initialize(word)
     @word = word
-    @scrabble_score = 0
   end
   
   def word
     @word
-  end
-
-  def scrabble_score
-    @scrabble_score
   end
 
   def data_structure
@@ -25,8 +22,15 @@ class Word
   end
 
   def scrabble
-    data = data_structure()
-    data.fetch("A")
+    scores = data_structure()
+    scrabble_score = 0
+    upcase_letters = @word.upcase().split('')
+  
+    upcase_letters.each() do |letter|
+      value = scores.fetch(letter)
+      scrabble_score += value
+    end
+    scrabble_score
   end
   
 end
